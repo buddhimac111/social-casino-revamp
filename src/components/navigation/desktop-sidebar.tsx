@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { motion } from "motion/react";
-import { Search } from "lucide-react";
+import { Search, LogOut } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { desktopNavItems, isRouteActive } from "@/components/common/layout-shell";
+import { desktopNavItems, isRouteActive } from "@/components/navigation/layout-shell";
 
 type DesktopSidebarProps = {
   className?: string;
@@ -19,7 +19,7 @@ type DesktopSidebarProps = {
 
 export function DesktopSidebar({ className }: DesktopSidebarProps) {
   const pathname = usePathname();
-
+  const router = useRouter();
   return (
     <aside
       className={cn(
@@ -111,18 +111,25 @@ export function DesktopSidebar({ className }: DesktopSidebarProps) {
       <div className="mt-auto pt-6 [@media_(max-height:900px)]:pt-4">
         <Separator className="mb-4 bg-border-ash [@media_(max-height:900px)]:mb-3" />
         <div className="flex items-center gap-3 rounded-2xl px-1 py-2 [@media_(max-height:900px)]:gap-2.5 [@media_(max-height:900px)]:py-1.5">
-          <Avatar className="size-11 border border-border-ash [@media_(max-height:900px)]:size-9">
+          <Avatar className="size-11 border border-border-ash [@media_(max-height:900px)]:size-9 cursor-pointer" onClick={() => {
+            router.push("/profile");
+          }}>
             <AvatarFallback className="bg-main-green/15 font-semibold text-main-green">
               ID
             </AvatarFallback>
           </Avatar>
-          <div className="min-w-0">
+          <div className="min-w-0 cursor-pointer" onClick={() => {
+            router.push("/profile");
+          }}>
             <p className="truncate text-base font-bold text-header-blue [@media_(max-height:900px)]:text-sm">
               Iddhi Dassanayake
             </p>
             <p className="truncate text-sm text-text-ash [@media_(max-height:900px)]:text-[0.9rem]">
               @iddhikumara.social
             </p>
+          </div>
+          <div className="ml-auto cursor-pointer">
+            <LogOut className="size-5 text-main-green hover:text-red" />
           </div>
         </div>
       </div>

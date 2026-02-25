@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import DesktopSidebar from "@/components/common/desktop-sidebar";
-import MobileFooter from "@/components/common/mobile-footer";
-import MobileHeader from "@/components/common/mobile-header";
+import DesktopSidebar from "@/components/navigation/desktop-sidebar";
+import MobileFooter from "@/components/navigation/mobile-footer";
+import MobileHeader from "@/components/navigation/mobile-header";
 
 export default function MainLayout({
   children,

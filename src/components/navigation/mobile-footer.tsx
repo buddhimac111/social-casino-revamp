@@ -6,7 +6,7 @@ import { motion } from "motion/react";
 
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { cn } from "@/lib/utils";
-import { isRouteActive, mobileNavItems } from "@/components/common/layout-shell";
+import { isRouteActive, mobileNavItems } from "@/components/navigation/layout-shell";
 
 export function MobileFooter() {
   const pathname = usePathname();
