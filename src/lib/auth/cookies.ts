@@ -11,7 +11,7 @@ const COOKIE_BASE_OPTIONS = {
   path: "/",
 };
 
-const ACCESS_TOKEN_MAX_AGE = 60 * 60; // 1 hour
+const ACCESS_TOKEN_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 const REFRESH_TOKEN_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
 export const readAuthCookies = (request: NextRequest) => ({
