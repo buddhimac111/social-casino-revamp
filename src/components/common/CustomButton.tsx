@@ -3,6 +3,7 @@ import Image from "next/image";
 import * as Icons from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Loader2 } from "lucide-react";
+import { motion } from "motion/react";
 
 interface CustomButtonProps {
   text: string;
@@ -52,18 +53,39 @@ const CustomButton: React.FC<CustomButtonProps> = ({
     : "";
 
   return (
-    <button
+    <motion.button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`flex items-center justify-center rounded-xl px-6 py-3 gap-3 text-lg transition-all duration-300 hover:opacity-90 ${variantStyles[variant]} ${additionalTailwindClass} ${disabledStyles}`}
+      whileHover={
+        disabled
+          ? {}
+          : {
+            scale: 1,
+            y: -1,
+            boxShadow:
+              "0 6px 14px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.12)",
+          }
+      }
+      whileTap={
+        disabled
+          ? {}
+          : {
+            scale: 1,
+            y: 0,
+            boxShadow:
+              "0 4px 10px rgba(0, 0, 0, 0.14), 0 1px 4px rgba(0, 0, 0, 0.10)",
+          }
+      }
+      transition={{ type: "tween", ease: "easeInOut", duration: 0.18 }}
+      className={`flex items-center justify-center rounded-xl px-6 py-3 gap-3 text-lg transition-colors duration-150 ${variantStyles[variant]} ${additionalTailwindClass} ${disabledStyles}`}
     >
       {iconLocation === "start" && IconComponent}
-      <span>
+      <span className="mb-0.5">
         {isLoading ? <Loader2 className="w-6 h-6 animate-spin" /> : text}
       </span>
       {iconLocation === "end" && IconComponent}
-    </button>
+    </motion.button>
   );
 };
 
