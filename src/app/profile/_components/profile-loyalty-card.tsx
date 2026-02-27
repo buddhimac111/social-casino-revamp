@@ -37,17 +37,17 @@ const loyaltyMetrics: LoyaltyMetric[] = [
 
 export function ProfileLoyaltyCard() {
   return (
-    <aside className="rounded-3xl border border-border-ash bg-card p-5 shadow-sm md:p-0">
-      <div className="flex items-start justify-between gap-3 px-6 py-4">
-        <h2 className="text-lg font-semibold text-header-blue md:text-xl">
+    <aside className="rounded-3xl border border-border-ash bg-accent-blue md:bg-white p-5 shadow-sm md:p-0">
+      <div className="flex items-start justify-between gap-3 px-2 md:px-7 py-2 md:pt-5 md:pb-3">
+        <h2 className="text-md font-semibold text-header-blue md:text-xl">
           Loyalty Status
         </h2>
         <button
           type="button"
-          className="inline-flex h-8 w-8 items-center justify-center rounded-full text-icon-ash hover:bg-accent-blue/60"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full text-text-ash md:text-icon-ash hover:bg-accent-blue/60"
           aria-label="More options"
         >
-          <EllipsisVertical className="size-6" aria-hidden="true" />
+          <EllipsisVertical className="size-4 md:size-6" aria-hidden="true" />
         </button>
       </div>
 
@@ -62,31 +62,29 @@ export function ProfileLoyaltyCard() {
 
       {/* Mobile layout (compact horizontal cards) */}
       <div className="mt-4 md:hidden">
-        <div className="rounded-3xl bg-accent-blue/70 px-3 py-4">
-          <div className="grid grid-cols-3 gap-3">
-            {loyaltyMetrics.map((metric) => (
-              <LoyaltyMetricCard key={metric.id} {...metric} variant="compact" />
-            ))}
-          </div>
+        <div className="grid grid-cols-3 gap-3">
+          {loyaltyMetrics.map((metric) => (
+            <LoyaltyMetricCard key={metric.id} {...metric} variant="compact" />
+          ))}
+        </div>
 
-          <div className="mt-4 rounded-2xl bg-white px-3 py-3 text-[11px] text-text-ash shadow-sm">
-            <div className="flex items-center gap-2">
-              <span className="grid size-7 place-items-center rounded-full bg-accent-blue/80 text-main-green">
-                <Clock className="size-3.5" aria-hidden="true" />
+        <div className="mt-4 rounded-2xl bg-white px-3 py-3 text-[11px] text-text-ash shadow-sm">
+          <div className="flex items-center gap-2">
+            <span className="grid size-7 place-items-center rounded-full bg-accent-blue/80 text-main-green">
+              <Clock className="size-3.5" aria-hidden="true" />
+            </span>
+            <p>
+              <span className="font-semibold text-main-green">520 Points</span>{" "}
+              will expire by{" "}
+              <span className="font-semibold text-header-blue">
+                30th April 2026
               </span>
-              <p>
-                <span className="font-semibold text-main-green">520 Points</span>{" "}
-                will expire by{" "}
-                <span className="font-semibold text-header-blue">
-                  30th April 2026
-                </span>
-              </p>
-            </div>
+            </p>
           </div>
         </div>
       </div>
 
-      <div className="mt-5 h-px bg-border-ash" />
+      <div className="hidden md:block mt-5 h-px bg-border-ash" />
 
       {/* Web / desktop expiry notice */}
       <div className="mx-6 my-4 hidden rounded-xl border border-border-ash px-4 py-3 text-xs text-text-ash shadow-sm md:block md:px-5 md:text-sm">
