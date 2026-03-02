@@ -16,7 +16,7 @@ export default function MainLayout({
       <MobileHeader />
       <MobileFooter />
 
-      <main className="min-h-screen px-4 pb-16 pt-16 md:ml-[320px] md:px-8 md:pt-8 md:pb-8">
+      <main className="min-h-screen px-4 pb-16 pt-16 lg:ml-[320px] lg:px-8 lg:pt-8 lg:pb-8">
         {children}
       </main>
     </div>

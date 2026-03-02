@@ -12,7 +12,7 @@ export function MobileFooter() {
   const pathname = usePathname();
 
   return (
-    <footer className="fixed inset-x-0 bottom-0 z-50 border-t border-border-ash bg-white backdrop-blur md:hidden">
+    <footer className="fixed inset-x-0 bottom-0 z-50 border-t border-border-ash bg-white backdrop-blur lg:hidden">
       <nav
         className="mx-auto flex h-14 w-full items-stretch justify-between px-2"
         aria-label="Mobile bottom navigation"

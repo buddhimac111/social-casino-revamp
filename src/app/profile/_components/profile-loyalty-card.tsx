@@ -37,7 +37,7 @@ const loyaltyMetrics: LoyaltyMetric[] = [
 
 export function ProfileLoyaltyCard() {
   return (
-    <aside className="rounded-3xl border border-border-ash bg-accent-blue md:bg-white p-5 shadow-sm md:p-0">
+    <aside className="flex h-full flex-col rounded-3xl border border-border-ash bg-accent-blue md:bg-white p-5 shadow-sm md:p-0">
       <div className="flex items-start justify-between gap-3 px-2 md:px-7 py-2 md:pt-5 md:pb-3">
         <h2 className="text-md font-semibold text-header-blue md:text-xl">
           Loyalty Status

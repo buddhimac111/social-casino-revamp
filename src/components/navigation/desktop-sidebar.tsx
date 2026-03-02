@@ -23,7 +23,7 @@ export function DesktopSidebar({ className }: DesktopSidebarProps) {
   return (
     <aside
       className={cn(
-        "hidden h-screen w-[320px] shrink-0 flex-col overflow-y-auto border-r border-border-ash bg-white px-6 py-8 md:flex scrollbar-glassy [@media_(max-height:900px)]:w-[304px] [@media_(max-height:900px)]:px-5 [@media_(max-height:900px)]:py-4.5",
+        "hidden h-screen w-[320px] shrink-0 flex-col overflow-y-auto border-r border-border-ash bg-white px-6 py-8 lg:flex scrollbar-glassy [@media_(max-height:900px)]:w-[304px] [@media_(max-height:900px)]:px-5 [@media_(max-height:900px)]:py-4.5",
         className,
       )}
     >

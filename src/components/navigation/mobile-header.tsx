@@ -40,7 +40,7 @@ const headerActions: HeaderAction[] = [
 
 export function MobileHeader() {
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border-ash bg-white backdrop-blur md:hidden">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border-ash bg-white backdrop-blur lg:hidden">
       <div className="mx-auto flex h-14 w-full items-center justify-between px-3">
         <Link href="/" className="flex items-center gap-2.5">
           <Image src="/logos/logo_,main.png" alt="747 Social logo" width={28} height={28} priority />

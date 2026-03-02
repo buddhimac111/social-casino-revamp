@@ -9,7 +9,7 @@ export function ProfileBanner() {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const mq = window.matchMedia("(min-width: 768px)");
+    const mq = window.matchMedia("(min-width: 1024px)");
 
     const update = () => {
       setIsDesktop(mq.matches);

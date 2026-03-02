@@ -4,7 +4,7 @@ import { StatPill } from "./profile-stat-pill";
 
 export function ProfileBannerDesktop() {
   return (
-    <section className="hidden overflow-hidden rounded-3xl border border-border-ash bg-card shadow-sm md:block">
+    <section className="hidden overflow-hidden rounded-3xl border border-border-ash bg-card shadow-sm lg:block">
       <div className="relative h-[200px] lg:h-[210px]">
         <Image
           src="/media/banner.jpeg"
@@ -32,7 +32,7 @@ export function ProfileBannerDesktop() {
 
           <div className="mt-12 flex flex-col text-header-blue">
             <h1 className="text-xl font-semibold leading-tight lg:text-2xl">
-              Iddhi Dassanayake
+              iddhi Dassanayake
             </h1>
             <p className="text-sm font-medium text-text-ash">
               @iddhikumarA.social

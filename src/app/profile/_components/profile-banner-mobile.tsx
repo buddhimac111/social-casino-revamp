@@ -4,7 +4,7 @@ import { StatPill } from "./profile-stat-pill";
 
 export function ProfileBannerMobile() {
   return (
-    <section className="block overflow-hidden rounded-3xl border border-border-ash bg-card shadow-sm md:hidden">
+    <section className="block overflow-hidden rounded-3xl border border-border-ash bg-card shadow-sm lg:hidden">
       <div className="relative h-[180px]">
         <Image
           src="/media/banner.jpeg"
