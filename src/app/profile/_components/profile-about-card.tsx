@@ -1,5 +1,14 @@
 import { FaFacebook, FaWhatsapp, FaInstagram } from "react-icons/fa";
 import { FaTelegramPlane } from "react-icons/fa";
+import Image from "next/image";
+import { AudioSpectrum } from "@/components/common/AudioSpectrum";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { EllipsisVertical } from "lucide-react";
 
 export function ProfileAboutCard() {
@@ -21,57 +30,95 @@ export function ProfileAboutCard() {
       <div className="h-px bg-border-ash" />
 
       <div className="mt-5 flex flex-1 min-h-0 flex-col px-2 md:px-7 pb-5 md:pb-7">
-        <div className="rounded-full bg-accent-blue/80 p-1 text-xs font-semibold text-text-ash md:text-sm">
-          <div className="grid grid-cols-4 gap-1">
-            <TabPill label="Text" active />
-            <TabPill label="Photo" />
-            <TabPill label="Video" />
-            <TabPill label="Voice" />
-          </div>
-        </div>
+        <Tabs
+          defaultValue="text"
+          className="flex flex-1 flex-col gap-4"
+        >
+          <TabsList className="rounded-full bg-accent-blue/80 text-xs font-semibold text-text-ash md:text-sm w-full">
+            <div className="grid grid-cols-4 gap-1 w-full">
+              <TabsTrigger
+                value="text"
+                className="rounded-full px-3 py-2 text-[11px] md:text-xs lg:text-sm data-[state=active]:bg-main-green data-[state=active]:text-white data-[state=active]:shadow-sm text-text-ash hover:bg-accent-blue"
+              >
+                Text
+              </TabsTrigger>
+              <TabsTrigger
+                value="photo"
+                className="rounded-full px-3 py-2 text-[11px] md:text-xs lg:text-sm data-[state=active]:bg-main-green data-[state=active]:text-white data-[state=active]:shadow-sm text-text-ash hover:bg-accent-blue"
+              >
+                Photo
+              </TabsTrigger>
+              <TabsTrigger
+                value="video"
+                className="rounded-full px-3 py-2 text-[11px] md:text-xs lg:text-sm data-[state=active]:bg-main-green data-[state=active]:text-white data-[state=active]:shadow-sm text-text-ash hover:bg-accent-blue"
+              >
+                Video
+              </TabsTrigger>
+              <TabsTrigger
+                value="voice"
+                className="rounded-full px-3 py-2 text-[11px] md:text-xs lg:text-sm data-[state=active]:bg-main-green data-[state=active]:text-white data-[state=active]:shadow-sm text-text-ash hover:bg-accent-blue"
+              >
+                Voice
+              </TabsTrigger>
+            </div>
+          </TabsList>
 
-        <div className="mt-5 h-40 md:h-48 lg:h-56 xl:h-64 rounded-3xl border border-border-ash bg-accent-blue/40 p-4 text-xs text-text-ash md:p-5 md:text-sm lg:text-[15px] overflow-y-auto scrollbar-glassy">
-          <p className="leading-relaxed">
-            Hi there! 👋 I&apos;m Iddhi Dassanayake, an AI enthusiast. When I&apos;m
-            not crunching numbers or optimizing algorithms, you can find me
-            staring at the sky. Lorem ipsum dolor sit amet consectetur
-            adipiscing, elit mattis porta hendrerit eget parturient fusce,
-            egestas netus habitasse iaculis aliquam. Natoque nostra laoreet
-            aptent ornare nisi cubilia condimentum integer sem elit mattis porta hendrerit eget parturient fusce,
-            egestas netus habitasse iaculis aliquam. Natoque nostra laoreet
+          <TabsContent value="text" className="flex-1">
+            <div className="mt-3 h-40 md:h-48 lg:h-60 rounded-3xl border border-border-ash bg-accent-blue/40 p-4 text-xs text-text-ash md:p-5 md:text-sm lg:text-[15px] overflow-y-auto scrollbar-glassy">
+              <p className="leading-relaxed">
+                Hi there! 👋 I&apos;m Iddhi Dassanayake, an AI enthusiast. When
+                I&apos;m not crunching numbers or optimizing algorithms, you can
+                find me staring at the sky. Lorem ipsum dolor sit amet
+                consectetur adipiscing, elit mattis porta hendrerit eget
+                parturient fusce, egestas netus habitasse iaculis aliquam.
+                Natoque nostra laoreet aptent ornare nisi cubilia condimentum
+                integer sem elit mattis porta hendrerit eget parturient fusce,
+                egestas netus habitasse iaculis aliquam. Natoque nostra laoreet.
+              </p>
+            </div>
+            <div className="mt-5 grid grid-cols-2 gap-3">
+              <SocialPill label="@iddhidassanayake" platform="facebook" />
+              <SocialPill label="@iddhidassanayake" platform="telegram" />
+              <SocialPill label="@iddhidassanayake" platform="instagram" />
+              <SocialPill label="@iddhidassanayake" platform="whatsapp" />
+            </div>
+          </TabsContent>
 
-      
-            
-          </p>
-        </div>
+          <TabsContent value="photo" className="flex-1">
+            <AspectRatio ratio={1} className="overflow-hidden rounded-2xl">
+              <Image
+                src="/media/image_intro.png"
+                alt="Iddhi intro"
+                fill
+                priority
+              />
+            </AspectRatio>
+          </TabsContent>
 
-        <div className="mt-5 grid grid-cols-2 gap-3">
-          <SocialPill label="@iddhidassanayake" platform="facebook" />
-          <SocialPill label="@iddhidassanayake" platform="telegram" />
-          <SocialPill label="@iddhidassanayake" platform="instagram" />
-          <SocialPill label="@iddhidassanayake" platform="whatsapp" />
-        </div>
+          <TabsContent value="video" className="flex-1">
+            <AspectRatio ratio={1} className="overflow-hidden rounded-2xl">
+              <video
+                className="h-full w-full object-cover"
+                src="/media/intro_vid.mp4"
+                controls
+                playsInline
+                preload="metadata"
+              />
+            </AspectRatio>
+          </TabsContent>
+
+          <TabsContent value="voice" className="flex-1">
+
+            <AudioSpectrum
+              audioSrc="/media/intro_voice_2.mp3"
+              title="Who Am I"
+              subtitle="Know More About Iddhi Dasanayake"
+            />
+
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
-  );
-}
-
-type TabPillProps = {
-  label: string;
-  active?: boolean;
-};
-
-function TabPill({ label, active }: TabPillProps) {
-  return (
-    <button
-      type="button"
-      className={`inline-flex items-center justify-center rounded-full px-3 py-2 transition-colors ${active
-          ? "bg-main-green text-white shadow-sm"
-          : "text-text-ash hover:bg-accent-blue"
-        }`}
-    >
-      {label}
-    </button>
   );
 }
 
