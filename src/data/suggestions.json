@@ -1,0 +1,66 @@
+{
+  "suggestions": [
+    {
+      "id": "1",
+      "displayName": "Ms. Casino Princess",
+      "handle": "@casinoprincess",
+      "profileImageUrl": "/media/profile_sample_1.jpg",
+      "bannerImageUrl": "/media/banner.jpeg",
+      "loyaltyPoints": 500,
+      "tierBadge": "Gold",
+      "isOnline": true,
+      "recentGames": [
+        { "id": 1, "name": "DEAD WEST", "imageUrl": "/media/sample_game.png" },
+        { "id": 2, "name": "RABID RANDY DARK TRAILS", "imageUrl": "/media/sample_game.png" },
+        { "id": 3, "name": "GONZO II", "imageUrl": "/media/sample_game.png" }
+      ],
+      "followedBy": [
+        { "id": "f1", "imageUrl": "/media/profile_sample_1.jpg", "name": "User 1" },
+        { "id": "f2", "imageUrl": "/media/profile_sample_1.jpg", "name": "User 2" },
+        { "id": "f3", "imageUrl": "/media/profile_sample_1.jpg", "name": "User 3" },
+        { "id": "f4", "imageUrl": "/media/profile_sample_1.jpg", "name": "User 4" }
+      ],
+      "followedByCount": 4
+    },
+    {
+      "id": "2",
+      "displayName": "High Roller Mike",
+      "handle": "@highrollermike",
+      "profileImageUrl": "/media/profile_sample_1.jpg",
+      "bannerImageUrl": "/media/post-16-9.png",
+      "loyaltyPoints": 1200,
+      "tierBadge": "Gold",
+      "isOnline": true,
+      "recentGames": [
+        { "id": 4, "name": "Sample Game", "imageUrl": "/media/sample_game.png" },
+        { "id": 5, "name": "Sample Game", "imageUrl": "/media/sample_game.png" },
+        { "id": 6, "name": "Sample Game", "imageUrl": "/media/sample_game.png" }
+      ],
+      "followedBy": [
+        { "id": "f5", "imageUrl": "/media/profile_sample_1.jpg", "name": "User" },
+        { "id": "f6", "imageUrl": "/media/profile_sample_1.jpg", "name": "User" },
+        { "id": "f7", "imageUrl": "/media/profile_sample_1.jpg", "name": "User" }
+      ],
+      "followedByCount": 12
+    },
+    {
+      "id": "3",
+      "displayName": "Lucky Star",
+      "handle": "@luckystar",
+      "profileImageUrl": "/media/profile_sample_1.jpg",
+      "bannerImageUrl": "/media/post-1-1.jpg",
+      "loyaltyPoints": 250,
+      "tierBadge": "Silver",
+      "isOnline": false,
+      "recentGames": [
+        { "id": 7, "name": "Sample Game", "imageUrl": "/media/sample_game.png" },
+        { "id": 8, "name": "Sample Game", "imageUrl": "/media/sample_game.png" }
+      ],
+      "followedBy": [
+        { "id": "f8", "imageUrl": "/media/profile_sample_1.jpg", "name": "User" },
+        { "id": "f9", "imageUrl": "/media/profile_sample_1.jpg", "name": "User" }
+      ],
+      "followedByCount": 7
+    }
+  ]
+}
