@@ -8,7 +8,7 @@ import type { FriendSuggestion } from "@/lib/types/suggestion";
 export function FriendSuggestionsSidebar() {
   return (
     <aside
-      className="fixed inset-y-0 right-0 z-30 hidden h-screen w-[280px] shrink-0 flex-col gap-3 overflow-hidden border-l border-border-ash bg-white py-5 lg:flex xl:w-[300px] [@media_(max-height:900px)]:w-[260px] [@media_(max-height:900px)]:py-4"
+      className="fixed inset-y-0 right-0 z-30 hidden h-screen w-[320px] shrink-0 flex-col gap-3 overflow-hidden border-l border-border-ash bg-white py-5 lg:flex xl:w-[300px] [@media_(max-height:900px)]:w-[260px] [@media_(max-height:900px)]:py-4"
       aria-label="Friend suggestions"
     >
       <div className="flex items-center justify-between px-4">

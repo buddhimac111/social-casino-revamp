@@ -9,7 +9,7 @@
       "authorName": "747 Entertainment",
       "authorProfileImage": "https://i.pravatar.cc/150?img=1",
       "authorTitle": "Casino Gaming Channel",
-      "aspectRatio": "16:9",
+      "aspectRatio": "1:1",
       "isAdmin": true,
       "isVerified": true,
       "createdUtc": "2026-03-02T10:30:00Z",
@@ -26,7 +26,7 @@
         {
           "id": 1,
           "mediaUnique": "media-1",
-          "url": "/media/post-16-9.png",
+          "url": "/media/post-1-1.jpg",
           "caption": "Gaming Setup",
           "mediaType": "image",
           "order": 1
@@ -102,13 +102,23 @@
           "order": 1
         },
         {
-          "id": 4,
-          "mediaUnique": "media-4",
-          "url": "/media/post-9-16.jpg",
-          "caption": "Victory",
+          "id": 3,
+          "mediaUnique": "media-3",
+          "url": "/media/post-1-1.jpg",
+          "caption": "Squad Goals",
           "mediaType": "image",
-          "order": 2
+          "order": 1
+        },
+        {
+          "id": 3,
+          "mediaUnique": "media-3",
+          "url": "/media/post-1-1.jpg",
+          "caption": "Squad Goals",
+          "mediaType": "image",
+          "order": 1
         }
+      
+        
       ],
       "postType": "Normal",
       "status": 0,
@@ -148,7 +158,7 @@
       "authorName": "LuckyPlayer",
       "authorProfileImage": "https://i.pravatar.cc/150?img=5",
       "authorTitle": "Verified Gambler",
-      "aspectRatio": "16:9",
+      "aspectRatio": "9:16",
       "isAdmin": true,
       "isVerified": true,
       "createdUtc": "2026-03-02T06:00:00Z",
@@ -165,7 +175,7 @@
         {
           "id": 5,
           "mediaUnique": "media-5",
-          "url": "/media/post-16-9.png",
+          "url": "/media/post-9-16.jpg",
           "caption": "Casino Win",
           "mediaType": "image",
           "order": 1
@@ -173,9 +183,9 @@
         {
           "id": 6,
           "mediaUnique": "media-6",
-          "url": "/media/intro_vid.mp4",
+          "url": "/media/post-9-16.jpg",
           "caption": "Celebration",
-          "mediaType": "video",
+          "mediaType": "image",
           "order": 2
         }
       ],
@@ -226,7 +236,7 @@
       "authorName": "PhotoEnthusiast",
       "authorProfileImage": "https://i.pravatar.cc/150?img=7",
       "authorTitle": "Verified Gambler",
-      "aspectRatio": "1:1",
+      "aspectRatio": "16:9",
       "isAdmin": false,
       "isVerified": true,
       "createdUtc": "2026-03-02T04:15:00Z",
@@ -243,7 +253,7 @@
         {
           "id": 8,
           "mediaUnique": "media-8",
-          "url": "/media/post-1-1.jpg",
+          "url": "/media/post-16-9.png",
           "caption": "Beautiful Moment",
           "mediaType": "image",
           "order": 1
@@ -259,9 +269,17 @@
         {
           "id": 10,
           "mediaUnique": "media-10",
-          "url": "/media/vid.mp4",
+          "url": "/media/post-16-9.png",
           "caption": "Motion Capture",
-          "mediaType": "video",
+          "mediaType": "image",
+          "order": 3
+        },
+        {
+          "id": 10,
+          "mediaUnique": "media-10",
+          "url": "/media/post-16-9.png",
+          "caption": "Motion Capture",
+          "mediaType": "image",
           "order": 3
         }
       ],
@@ -519,7 +537,7 @@
       "authorName": "Adventurer",
       "authorProfileImage": "https://i.pravatar.cc/150?img=15",
       "authorTitle": "Verified Gambler",
-      "aspectRatio": "16:9",
+      "aspectRatio": "9:16",
       "isAdmin": false,
       "isVerified": true,
       "createdUtc": "2026-03-01T19:00:00Z",
@@ -536,7 +554,7 @@
         {
           "id": 18,
           "mediaUnique": "media-18",
-          "url": "/media/post-16-9.png",
+          "url": "/media/post-9-16.jpg",
           "caption": "Adventure Begins",
           "mediaType": "image",
           "order": 1

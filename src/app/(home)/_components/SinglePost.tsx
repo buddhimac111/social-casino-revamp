@@ -1,84 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Post } from "@/lib/types/post";
 import { formatTimeAgo } from "@/app/(home)/_helpers/posts";
 import { SeeMore } from "./SeeMore";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  type CarouselApi,
-} from "@/components/ui/carousel";
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+//   type CarouselApi,
+// } from "@/components/ui/carousel";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import ImageGrid from '@/app/(home)/_components/ImageGrid'
 import { Interactions } from "./Interactions";
 import { motion } from "motion/react";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { MoreHorizontal } from "lucide-react";
-
 interface SinglePostProps {
   post: Post;
   index: number;
 }
 
 const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  // const [currentSlide, setCurrentSlide] = useState(0);
 
-  const handleCarouselApi = (api: CarouselApi) => {
-    if (!api) return;
+  // const handleCarouselApi = (api: CarouselApi) => {
+  //   if (!api) return;
 
-    setCurrentSlide(api.selectedScrollSnap());
+  //   setCurrentSlide(api.selectedScrollSnap());
 
-    api.on("select", () => {
-      setCurrentSlide(api.selectedScrollSnap());
-    });
-  };
-
-  const shouldUseBlurredBackground = () => {
-    return post.aspectRatio === "1:1" || post.aspectRatio === "9:16";
-  };
-
-  const renderMediaContent = (media: Post["media"][0]) => {
-    const content =
-      media.mediaType === "image" ? (
-        <img
-          src={media.url}
-          alt={media.caption || "Post image"}
-          className="w-full h-full object-contain relative z-10"
-        />
-      ) : (
-        <video
-          src={media.url}
-          controls
-          controlsList="nodownload"
-          className="w-full h-full object-contain relative z-10"
-          preload="metadata"
-          playsInline
-        />
-      );
-
-    if (shouldUseBlurredBackground()) {
-      return (
-        <div className="relative w-full aspect-video overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center blur-2xl opacity-60 scale-110"
-            style={{ backgroundImage: `url(${media.url})` }}
-          />
-          <div className="absolute inset-0 flex items-center justify-center">
-            {content}
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="w-full aspect-video">
-        {content}
-      </div>
-    );
-  };
+  //   api.on("select", () => {
+  //     setCurrentSlide(api.selectedScrollSnap());
+  //   });
+  // };
 
   return (
     <motion.div
@@ -134,7 +90,7 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
             <MoreHorizontal className="w-5 h-5" />
           </button>
         </div>
-        <div className="hidden md:block mt-4 h-px bg-border-ash -mx-4" />
+        <div className="hidden md:block mt-4 h-[0.7px] bg-border-ash -mx-4" />
 
         {post.content && (
           <div className="mt-3">
@@ -145,33 +101,35 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
 
       {post.media && post.media.length > 0 && (
         <div className="relative">
-          {post.media.length === 1 ? (
-            renderMediaContent(post.media[0])
-          ) : (
-            <div className="relative">
-              <Carousel
-                className="w-full"
-                opts={{
-                  align: "start",
-                }}
-                setApi={handleCarouselApi}
-              >
-                <CarouselContent>
-                  {post.media.map((media, idx) => (
-                    <CarouselItem key={media.id || idx}>
-                      {renderMediaContent(media)}
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white z-20" />
-                <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white z-20" />
-              </Carousel>
+          <ImageGrid 
+            aspectRatio={post.aspectRatio}
+            media={post.media.map((media) => ({
+              src: media.url,
+              alt: media.caption || "",
+              type: media.mediaType === "video" ? "video" : "image"
+            }))} 
+          />
+          {/* <Carousel
+            className="w-full"
+            opts={{
+              align: "start",
+            }}
+            setApi={handleCarouselApi}
+          >
+            <CarouselContent>
+              {post.media.map((media, idx) => (
+                <CarouselItem key={media.id || idx}>
+                  {renderMediaContent(media)}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white z-20" />
+            <CarouselNext className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white z-20" />
+          </Carousel> */}
 
-              <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-medium z-20">
-                {currentSlide + 1} / {post.media.length}
-              </div>
-            </div>
-          )}
+          {/* <div className="absolute bottom-4 right-4 bg-black/70 text-white px-3 py-1 rounded-full text-xs font-medium z-20">
+            {currentSlide + 1} / {post.media.length}
+          </div> */}
         </div>
       )}
 
