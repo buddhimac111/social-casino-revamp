@@ -6,33 +6,39 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { authApi } from "@/lib/api/auth";
 import { useAuthStore } from "@/stores/auth.store";
+import { LoginResponse } from "@/lib/types/auth";
+import { ApiErrorResponse } from "@/lib/types/common";
 
 export const useAuth = () => {
-  const { userId, isAuthenticated, isHydrating, initSession, setAuthenticated, clearAuthState } =
-    useAuthStore();
+  const {
+    userId,
+    isAuthenticated,
+    isHydrating,
+    initSession,
+    setAuthenticated,
+    clearAuthState,
+  } = useAuthStore();
   const queryClient = useQueryClient();
 
   useEffect(() => {
     void initSession();
   }, [initSession]);
 
-  const getStatusCode = (error: unknown): number | undefined => {
-    if (error instanceof AxiosError) {
-      return error.response?.status;
-    }
-    return undefined;
-  };
-
   const loginMutation = useMutation({
     mutationFn: authApi.login,
-    onSuccess: (data) => {
+    onSuccess: (data: LoginResponse) => {
       setAuthenticated(data.userId);
       queryClient.invalidateQueries({ queryKey: ["auth"] });
+      toast.success("Login successful! Redirecting...");
+      window.location.href = "/";
     },
     onError: (error: unknown) => {
       console.error("Login mutation failed:", error);
-      if (getStatusCode(error) === 401) {
-        toast.error("Invalid email or password");
+      if (error instanceof AxiosError && error.response?.data) {
+        const errorData = error.response.data as ApiErrorResponse;
+        toast.error(errorData.detail || "Login failed");
+      } else {
+        toast.error("An unexpected error occurred");
       }
     },
   });

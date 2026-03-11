@@ -12,7 +12,7 @@ const SKIP_AUTH_REFRESH_HEADER = "x-skip-auth-refresh";
 let refreshInFlight: Promise<void> | null = null;
 
 const api = axios.create({
-  baseURL: "/api/auth",
+  baseURL: "/api",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -55,7 +55,7 @@ api.interceptors.response.use(
       return api(originalRequest);
     } catch (refreshError) {
       if (typeof window !== "undefined") {
-        window.location.href = "/auth/login";
+        window.location.href = "/login";
       }
       return Promise.reject(refreshError);
     }

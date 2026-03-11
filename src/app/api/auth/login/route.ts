@@ -1,33 +1,51 @@
 import { NextRequest, NextResponse } from "next/server";
-import { setAuthCookies } from "@/lib/auth/cookies";
-import { loginExternal } from "@/lib/auth/external-auth";
+import { setAuthCookies } from "@/lib/utils/cookies";
 import { LoginRequest } from "@/lib/types/auth";
 
 export async function POST(request: NextRequest) {
   try {
     const credentials = (await request.json()) as LoginRequest;
-    const response = await loginExternal(credentials);
 
-    const nextResponse = NextResponse.json(
+    const externalResponse = await fetch(
+      `${process.env.EXTERNAL_API_URL}/api/Auth/login`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(credentials),
+        cache: "no-store",
+      },
+    );
+
+    if (!externalResponse.ok) {
+      const error = await externalResponse.json();
+      return NextResponse.json(
+        { detail: error.detail || "Login failed" },
+        { status: externalResponse.status },
+      );
+    }
+
+    const data = await externalResponse.json();
+
+    const response = NextResponse.json(
       {
         isAuthenticated: true,
-        userId: response.userId,
-        userRole: response.userRole ?? null,
+        userId: data.userId,
+        userRole: data.userRole ?? null,
       },
       { status: 200 },
     );
 
-    setAuthCookies(nextResponse, {
-      accessToken: response.accessToken,
-      refreshToken: response.refreshToken,
-      userId: response.userId,
+    setAuthCookies(response, {
+      accessToken: data.accessToken,
+      refreshToken: data.refreshToken,
+      userId: data.userId,
     });
 
-    return nextResponse;
+    return response;
   } catch (error) {
     return NextResponse.json(
-      { message: error instanceof Error ? error.message : "Login failed" },
-      { status: 401 },
+      { detail: error instanceof Error ? error.message : "Login failed" },
+      { status: 500 },
     );
   }
 }

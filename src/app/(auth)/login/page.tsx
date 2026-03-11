@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
-import { toast } from "sonner";
 import Image from "next/image";
 import Link from "next/link";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -17,50 +18,37 @@ import {
 import CustomButton from "@/components/common/CustomButton";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const { login, isLoginLoading, isLoginError, resetLoginError } = useAuth();
   const router = useRouter();
 
-  // Reset errors when form inputs change
-  useEffect(() => {
-    if (email || password) {
-      if (isLoginError) {
-        resetLoginError();
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email("Please enter a valid email address")
+        .required("Email is required"),
+      password: Yup.string().required("Password is required"),
+    }),
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: async (values) => {
+      try {
+        await login(values);
+      } catch (error) {
+        console.log("Login error handled by mutation", error);
       }
+    },
+  });
+
+  // Reset API login errors when user edits the form
+  useEffect(() => {
+    if ((formik.values.email || formik.values.password) && isLoginError) {
+      resetLoginError();
     }
-  }, [email, password, isLoginError, resetLoginError]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Validate fields and show toast errors
-    if (!email && !password) {
-      toast.error("Please enter your email and password");
-      return;
-    }
-
-    if (!email) {
-      toast.error("Please enter your email address");
-      return;
-    }
-
-    if (!password) {
-      toast.error("Please enter your password");
-      return;
-    }
-
-    try {
-      await login({ email, password });
-
-      // Show success toast
-      toast.success("Login successful! Redirecting...");
-      window.location.href = "/";
-    } catch (error) {
-      // Error is already handled by React Query mutation and shown as toast
-      console.log("Login error handled by mutation", error);
-    }
-  };
+  }, [formik.values.email, formik.values.password, isLoginError, resetLoginError]);
 
   return (
     <>
@@ -118,7 +106,7 @@ export default function LoginPage() {
                   Login To Your Account
                 </h1>
 
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={formik.handleSubmit} className="space-y-6">
                   <div className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="email" className="text-sm text-text-ash">
@@ -126,13 +114,20 @@ export default function LoginPage() {
                       </Label>
                       <Input
                         id="email"
+                        name="email"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         autoComplete="off"
                         placeholder="Enter Your Email"
                         className="h-11 bg-white text-header-blue"
                       />
+                      {formik.touched.email && formik.errors.email && (
+                        <p className="mt-1 text-xs text-red">
+                          {formik.errors.email}
+                        </p>
+                      )}
                     </div>
 
                     <div className="space-y-2">
@@ -144,13 +139,20 @@ export default function LoginPage() {
                       </Label>
                       <Input
                         id="password"
+                        name="password"
                         type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
                         autoComplete="off"
                         placeholder="Enter Your Password"
                         className="h-11 bg-white text-header-blue"
                       />
+                      {formik.touched.password && formik.errors.password && (
+                        <p className="mt-1 text-xs text-red">
+                          {formik.errors.password}
+                        </p>
+                      )}
                       <div className="mt-1 flex justify-end">
                         <Link
                           href="/auth/forgot-password"
@@ -176,7 +178,7 @@ export default function LoginPage() {
                     Haven&apos;t got an account?{" "}
                     <button
                       type="button"
-                      onClick={() => router.push("/auth/signup/1")}
+                      onClick={() => router.push("/signup")}
                       className="font-semibold text-main-green hover:text-main-green hover:underline cursor-pointer"
                     >
                       Sign up

@@ -38,17 +38,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-
-  async rewrites() {
-    return [
-      {
-        // Keep auth BFF routes in-app; proxy everything else to external API.
-        source: "/api/:path((?!auth(?:/|$)).*)",
-        // Locked at build time
-        destination: `${process.env.EXTERNAL_API_URL}/:path`,
-      },
-    ];
-  },
 };
 
 export default nextConfig;

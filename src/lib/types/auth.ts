@@ -15,6 +15,8 @@ export interface RefreshRequest {
 }
 
 export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
   userId: string;
   userRole?: string;
 }
