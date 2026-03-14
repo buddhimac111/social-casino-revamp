@@ -19,6 +19,10 @@ interface SuggestionCardProps {
   index?: number;
 }
 
+const AVATAR_SIZE = 64;
+const AVATAR_RING = 4;
+const HERO_HEIGHT = 90;
+
 export function SuggestionCard({ suggestion, index = 0 }: SuggestionCardProps) {
   const {
     displayName,
@@ -27,144 +31,168 @@ export function SuggestionCard({ suggestion, index = 0 }: SuggestionCardProps) {
     bannerImageUrl,
     loyaltyPoints,
     tierBadge,
-    isOnline,
     recentGames,
     followedBy,
     followedByCount,
   } = suggestion;
+
+  const avatarTotalSize = AVATAR_SIZE + AVATAR_RING * 2;
+  const avatarOverlapY = HERO_HEIGHT - avatarTotalSize / 2;
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.35, delay: index * 0.06 }}
-      className="rounded-2xl overflow-hidden bg-card border border-border-ash shadow-sm"
+      className="relative rounded-2xl overflow-hidden bg-card shadow-sm w-full max-w-[320px]"
     >
-      {/* Banner */}
-      <div className="relative h-20 w-full overflow-hidden bg-header-blue/10">
-        <Image
-          src={bannerImageUrl}
-          alt=""
-          fill
-          sizes="280px"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent" />
+      {/* Hero Banner Section */}
+      <div 
+        className="relative w-full overflow-hidden bg-linear-to-br from-header-blue/20 to-accent-blue/10"
+        style={{ height: `${HERO_HEIGHT}px` }}
+      >
+        {bannerImageUrl && (
+          <Image
+            src={bannerImageUrl}
+            alt=""
+            fill
+            sizes="320px"
+            className="object-cover"
+          />
+        )}
 
-        {/* Loyalty points badge - top right */}
-        <div className="absolute right-2 top-2 flex items-center gap-1 rounded-full bg-accent-blue/95 px-2.5 py-1 text-[0.65rem] font-semibold text-header-blue backdrop-blur-sm">
+        {/* Loyalty Points Badge - Top Right */}
+        <div className="absolute right-2 top-2 flex items-center gap-1 rounded-full bg-accent-blue px-2.5 py-1 text-[0.65rem] font-bold text-main-green backdrop-blur-sm shadow-sm">
           <Star className="size-3 fill-main-green text-main-green" />
-          <span>{loyaltyPoints} Loyalty Points</span>
+          <span>{loyaltyPoints.toLocaleString()} Loyalty Points</span>
         </div>
       </div>
 
-      {/* Profile row: avatar overlapping banner + name/handle */}
-      <div className="relative px-3 pb-2">
-        <div className="-mt-8 flex items-end gap-2">
-          <div className="relative shrink-0">
-            <div className="relative size-14 overflow-hidden rounded-full border-[3px] border-gold bg-card">
-              <Image
-                src={profileImageUrl}
-                alt={displayName}
-                width={56}
-                height={56}
-                className="object-cover"
-              />
-            </div>
-            {/* Tier badge pill below avatar */}
-            <div
-              className={cn(
-                "absolute -bottom-1 left-1/2 -translate-x-1/2 rounded-full px-2 py-0.5 text-[0.6rem] font-bold",
-                tierBadge === "Gold" && "bg-gold text-header-blue",
-                tierBadge === "Silver" && "bg-gray-400 text-white",
-                tierBadge === "Bronze" && "bg-amber-700 text-white"
-              )}
-            >
-              {tierBadge}
-            </div>
-            {/* Online indicator */}
-            {isOnline && (
-              <span
-                className="absolute right-0 top-0 size-3 rounded-full border-2 border-card bg-main-green"
-                aria-hidden
-              />
-            )}
-          </div>
-          <div className="min-w-0 flex-1 pb-0.5">
-            <p className="truncate text-sm font-bold text-header-blue">
-              {displayName}
-            </p>
-            <p className="truncate text-xs text-text-ash">{handle}</p>
-          </div>
+      {/* Card Body */}
+      <div className="bg-accent-blue border-t border-border-ash px-4 pb-4 pt-10">
+        {/* Name and Handle - Centered below avatar */}
+        <div className="flex flex-col items-center mb-3">
+          <h3 className="text-base font-semibold text-header-blue">
+            {displayName}
+          </h3>
+          <p className="text-xs font-medium text-text-ash">
+            {handle}
+          </p>
         </div>
-      </div>
 
-      {/* Recently Played Games */}
-      <div className="px-3 pb-3">
-        <p className="mb-2 text-[0.7rem] font-medium uppercase tracking-wide text-text-ash">
+        {/* Recently Played Games - Centered */}
+        <p className="text-center text-xs font-medium text-text-ash mb-3">
           Recently Played Games
         </p>
-        <div className="flex gap-1.5">
-          {recentGames.slice(0, 3).map((game) => (
-            <motion.div
-              key={game.id}
-              className="relative aspect-3/4 min-w-0 flex-1 overflow-hidden rounded-xl bg-muted"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <Image
-                src={game.imageUrl}
-                alt={game.name}
-                fill
-                sizes="80px"
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-linear-to-t from-black/70 to-transparent" />
-              <p className="absolute bottom-1 left-1 right-1 truncate text-[0.6rem] font-medium text-white drop-shadow-md">
-                {game.name}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
 
-      {/* Action buttons */}
-      <div className="flex gap-2 px-3 pb-3">
-        <Button
-          variant="default"
-          size="sm"
-          className="flex-1 h-8 bg-main-green text-white hover:bg-main-green/90"
-        >
-          Follow
-        </Button>
-        <Button
-          variant="outline"
-          size="sm"
-          className="h-8 w-8 shrink-0 border-border-ash p-0 text-main-green hover:bg-accent-blue hover:text-main-green"
-          aria-label="Like"
-        >
-          <Heart className="size-4" />
-        </Button>
-      </div>
-
-      {/* Followed By */}
-      <div className="flex items-center gap-2 border-t border-border-ash px-3 py-2">
-        <span className="text-xs font-medium text-text-ash">Followed By</span>
-        <AvatarGroup className="ml-auto">
-          {followedBy.slice(0, 4).map((f) => (
-            <Avatar key={f.id} className="size-6 ring-2 ring-card">
-              <AvatarImage src={f.imageUrl} alt={f.name} />
-              <AvatarFallback className="text-[0.6rem] bg-accent-blue text-header-blue">
-                {f.name.charAt(0)}
-              </AvatarFallback>
-            </Avatar>
-          ))}
-          {followedByCount > 0 && (
-            <AvatarGroupCount className="size-6 text-[0.65rem] ring-2 ring-card bg-accent-blue/90 text-header-blue">
-              {followedByCount}+
-            </AvatarGroupCount>
+        {/* Game Thumbnails - Larger Cards with Rounded Corners */}
+        <div className="flex items-center justify-center gap-3 mb-4">
+          {recentGames.length === 0 ? (
+            <>
+              {[1, 2, 3].map((i) => (
+                <div
+                  key={i}
+                  className="flex items-center justify-center rounded-2xl border-2 border-dashed border-border-ash bg-muted/20"
+                  style={{ width: '80px', height: '100px' }}
+                />
+              ))}
+              <div className="absolute text-xs text-text-ash">None</div>
+            </>
+          ) : (
+            <>
+              {recentGames.slice(0, 3).map((game, idx, arr) => (
+                <motion.div
+                  key={game.id}
+                  className="relative overflow-hidden rounded-md bg-muted shrink-0 shadow-sm"
+                  style={{ width: '60px', height: '80px' }}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Image
+                    src={game.imageUrl}
+                    alt={game.name}
+                    fill
+                    sizes="80px"
+                    className="object-cover"
+                  />
+                  {/* Show tint and "+N" badge on the last card if there are more games */}
+                  {idx === arr.length - 1 && recentGames.length > arr.length && (
+                    <>
+                      {/* Dark tint overlay */}
+                      <div className="absolute inset-0 bg-black/40" />
+                      {/* "+N" badge */}
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex items-center justify-center rounded-full bg-white shadow-lg" style={{ width: '36px', height: '36px' }}>
+                          <span className="text-base font-bold text-header-blue">
+                            {recentGames.length - arr.length}+
+                          </span>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </motion.div>
+              ))}
+            </>
           )}
-        </AvatarGroup>
+        </div>
+
+        {/* Follow Button and Heart */}
+        <div className="flex items-center gap-2 mb-3">
+          <Button
+            variant="default"
+            size="sm"
+            className="flex-1 h-9 bg-main-green text-white font-semibold hover:bg-main-green/90"
+          >
+            Follow
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-9 w-9 shrink-0 border-main-green p-0 hover:bg-accent-blue"
+            aria-label="Like"
+          >
+            <Heart className="size-4 text-main-green" />
+          </Button>
+        </div>
+
+        {/* Followed By Section */}
+        {followedByCount > 0 && (
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-medium text-text-ash">Followed By</span>
+            <AvatarGroup className="ml-auto">
+              {followedBy.slice(0, 4).map((f) => (
+                <Avatar key={f.id} className="size-7 ring-2 ring-card">
+                  <AvatarImage src={f.imageUrl} alt={f.name} />
+                  <AvatarFallback className="text-[0.6rem] bg-accent-blue text-header-blue">
+                    {f.name.charAt(0)}
+                  </AvatarFallback>
+                </Avatar>
+              ))}
+              {followedByCount > 4 && (
+                <AvatarGroupCount className="size-7 text-[0.65rem] ring-2 ring-card bg-accent-blue/90 text-header-blue">
+                  +{followedByCount - 4}
+                </AvatarGroupCount>
+              )}
+            </AvatarGroup>
+          </div>
+        )}
+      </div>
+
+      {/* Avatar - Absolutely Positioned Overlapping Banner - Centered */}
+      <div
+        className="absolute pointer-events-none z-10 left-1/2 -translate-x-1/2"
+        style={{
+          top: `${avatarOverlapY}px`,
+        }}
+      >
+        <div className="rounded-full border-4 border-card bg-card shadow-md">
+          <Avatar className="pointer-events-auto" style={{ width: `${AVATAR_SIZE}px`, height: `${AVATAR_SIZE}px` }}>
+            <AvatarImage src={profileImageUrl} alt={displayName} />
+            <AvatarFallback className="text-lg font-bold bg-accent-blue text-header-blue">
+              {displayName.charAt(0)}
+            </AvatarFallback>
+          </Avatar>
+        </div>
       </div>
     </motion.article>
   );
