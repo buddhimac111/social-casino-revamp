@@ -195,6 +195,39 @@
     },
     {
       "id": 6,
+      "postUnique": "post-ad-1",
+      "authorId": "advertiser-1",
+      "authorName": "747 Casino",
+      "authorProfileImage": "https://i.pravatar.cc/150?img=50",
+      "authorTitle": "Sponsored",
+      "aspectRatio": "16:9",
+      "isAdmin": false,
+      "isVerified": true,
+      "createdUtc": "2026-03-14T12:00:00Z",
+      "modifiedUtc": "2026-03-14T12:00:00Z",
+      "likesCount": 0,
+      "commentsCount": 0,
+      "sharesCount": 0,
+      "rating": 0,
+      "isLikedByCurrentUser": false,
+      "isSharedByCurrentUser": false,
+      "isRatedByCurrentUser": false,
+      "isSavedByCurrentUser": false,
+      "media": [
+        {
+          "id": 101,
+          "mediaUnique": "media-ad-1",
+          "url": "/media/ad1.png",
+          "caption": "Advertisement",
+          "mediaType": "image",
+          "order": 1
+        }
+      ],
+      "postType": "ad",
+      "status": 0
+    },
+    {
+      "id": 7,
       "postUnique": "post-6",
       "content": "New day, new opportunities! Let's make it count 💪✨",
       "authorId": "user-6",
@@ -228,7 +261,7 @@
       "status": 0
     },
     {
-      "id": 7,
+      "id": 8,
       "postUnique": "post-7",
       "title": "Epic Moments",
       "content": "Captured some incredible moments today! Life is beautiful when you take time to notice 📸\n\n#photography #moments #life",
@@ -288,7 +321,7 @@
       "location": "San Francisco, CA"
     },
     {
-      "id": 8,
+      "id": 9,
       "postUnique": "post-8",
       "content": "Grinding hard today! No pain, no gain 💯\n\n#hustle #grind #motivation",
       "authorId": "user-8",
@@ -313,7 +346,7 @@
       "status": 0
     },
     {
-      "id": 9,
+      "id": 10,
       "postUnique": "post-9",
       "title": "Weekend Vibes",
       "content": "Finally weekend! Time to relax and enjoy 🌴☀️\n\n#weekend #relax #goodvibes",
@@ -349,7 +382,7 @@
       "location": "Miami, FL"
     },
     {
-      "id": 10,
+      "id": 11,
       "postUnique": "post-10",
       "content": "Just discovered this amazing new spot! Highly recommend checking it out 🌟",
       "authorId": "user-10",
@@ -391,7 +424,7 @@
       "status": 0
     },
     {
-      "id": 11,
+      "id": 12,
       "postUnique": "post-11",
       "title": "Throwback",
       "content": "Throwback to one of the best days ever! Missing these moments 💭\n\n#throwback #memories #goodtimes",
@@ -426,7 +459,7 @@
       "status": 0
     },
     {
-      "id": 12,
+      "id": 13,
       "postUnique": "post-12",
       "content": "Coffee and contemplation ☕️ Sometimes the simple things are the best things.",
       "authorId": "user-12",
@@ -452,7 +485,7 @@
       "location": "Seattle, WA"
     },
     {
-      "id": 13,
+      "id": 14,
       "postUnique": "post-13",
       "title": "Game Night",
       "content": "Game night with the crew! Who's ready to lose? 😎🎮\n\n#gamenight #friends #competition",
@@ -495,7 +528,40 @@
       "status": 0
     },
     {
-      "id": 14,
+      "id": 15,
+      "postUnique": "post-ad-2",
+      "authorId": "advertiser-2",
+      "authorName": "Premium Games",
+      "authorProfileImage": "https://i.pravatar.cc/150?img=51",
+      "authorTitle": "Sponsored",
+      "aspectRatio": "16:9",
+      "isAdmin": false,
+      "isVerified": true,
+      "createdUtc": "2026-03-14T13:00:00Z",
+      "modifiedUtc": "2026-03-14T13:00:00Z",
+      "likesCount": 0,
+      "commentsCount": 0,
+      "sharesCount": 0,
+      "rating": 0,
+      "isLikedByCurrentUser": false,
+      "isSharedByCurrentUser": false,
+      "isRatedByCurrentUser": false,
+      "isSavedByCurrentUser": false,
+      "media": [
+        {
+          "id": 102,
+          "mediaUnique": "media-ad-2",
+          "url": "/media/ad2.png",
+          "caption": "Advertisement",
+          "mediaType": "image",
+          "order": 1
+        }
+      ],
+      "postType": "ad",
+      "status": 0
+    },
+    {
+      "id": 16,
       "postUnique": "post-14",
       "content": "Feeling grateful for all the amazing people in my life 🙏💕",
       "authorId": "user-14",
@@ -529,7 +595,7 @@
       "status": 0
     },
     {
-      "id": 15,
+      "id": 17,
       "postUnique": "post-15",
       "title": "Adventure Time",
       "content": "New adventure, new experiences! Life is all about exploring 🗺️✈️\n\n#adventure #travel #explore",
@@ -589,7 +655,7 @@
       "location": "Tokyo, Japan"
     },
     {
-      "id": 16,
+      "id": 18,
       "postUnique": "post-16",
       "content": "Late night thoughts: What if we're all just characters in someone else's game? 🤔",
       "authorId": "user-16",
@@ -614,7 +680,7 @@
       "status": 0
     },
     {
-      "id": 17,
+      "id": 19,
       "postUnique": "post-17",
       "title": "Fitness Journey",
       "content": "Day 30 of my fitness journey! Feeling stronger every day 💪🔥\n\n#fitness #health #transformation",
@@ -649,7 +715,7 @@
       "status": 0
     },
     {
-      "id": 18,
+      "id": 20,
       "postUnique": "post-18",
       "content": "Just finished binge-watching an entire series in one sitting. No regrets! 📺🍿",
       "authorId": "user-18",
@@ -683,7 +749,7 @@
       "status": 0
     },
     {
-      "id": 19,
+      "id": 21,
       "postUnique": "post-19",
       "title": "Foodie Paradise",
       "content": "Found the most amazing restaurant today! The food was absolutely incredible 🍽️😋\n\n#foodie #delicious #restaurant",
@@ -727,7 +793,7 @@
       "location": "Paris, France"
     },
     {
-      "id": 20,
+      "id": 22,
       "postUnique": "post-20",
       "content": "Success is not final, failure is not fatal: it is the courage to continue that counts. 💪✨",
       "authorId": "user-20",
@@ -752,9 +818,9 @@
       "status": 0
     }
   ],
-  "totalCount": 20,
+  "totalCount": 22,
   "pageNumber": 1,
-  "pageSize": 20,
+  "pageSize": 22,
   "hasNextPage": false,
   "hasPreviousPage": false
 }

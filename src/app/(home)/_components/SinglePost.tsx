@@ -36,6 +36,34 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
   //   });
   // };
 
+  // If post type is "ad", render ad layout
+  if (post.postType === "ad" && post.media && post.media.length > 0) {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: index * 0.05 }}
+        className="mb-8 bg-card rounded-xl border border-border-ash shadow-sm overflow-hidden"
+      >
+        <div className="relative">
+          <ImageGrid 
+            aspectRatio={post.aspectRatio || "16:9"}
+            media={post.media.map((media) => ({
+              src: media.url,
+              alt: media.caption || "Advertisement",
+              type: media.mediaType === "video" ? "video" : "image"
+            }))} 
+          />
+          {/* AD Label - Top Right Corner */}
+          <div className="absolute top-3 right-3 bg-header-blue border-2 border-border-ash text-white px-3 py-1 rounded-md text-md font-bold backdrop-blur-sm z-40 animate-pulse">
+            AD
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  // Normal post layout
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
