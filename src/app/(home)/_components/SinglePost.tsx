@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Post } from "@/lib/types/post";
 import { formatTimeAgo } from "@/app/(home)/_helpers/posts";
 import { SeeMore } from "./SeeMore";
@@ -15,6 +15,7 @@ import { SeeMore } from "./SeeMore";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import ImageGrid from '@/app/(home)/_components/ImageGrid'
 import { Interactions } from "./Interactions";
+import { CommentPopup } from "./CommentPopup";
 import { motion } from "motion/react";
 import { RiVerifiedBadgeFill } from "react-icons/ri";
 import { MoreHorizontal } from "lucide-react";
@@ -24,6 +25,7 @@ interface SinglePostProps {
 }
 
 const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
+  const [isCommentPopupOpen, setIsCommentPopupOpen] = useState(false);
   // const [currentSlide, setCurrentSlide] = useState(0);
 
   // const handleCarouselApi = (api: CarouselApi) => {
@@ -128,7 +130,10 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
       </div>
 
       {post.media && post.media.length > 0 && (
-        <div className="relative">
+        <div 
+          className="relative cursor-pointer"
+          onClick={() => setIsCommentPopupOpen(true)}
+        >
           <ImageGrid 
             aspectRatio={post.aspectRatio}
             media={post.media.map((media) => ({
@@ -162,8 +167,18 @@ const SinglePost: React.FC<SinglePostProps> = ({ post, index }) => {
       )}
 
       <div className="px-4 pb-4">
-        <Interactions post={post} />
+        <Interactions 
+          post={post} 
+          onCommentClick={() => setIsCommentPopupOpen(true)}
+        />
       </div>
+
+      {/* Comment Popup */}
+      <CommentPopup
+        post={post}
+        isOpen={isCommentPopupOpen}
+        onClose={() => setIsCommentPopupOpen(false)}
+      />
     </motion.div>
   );
 };

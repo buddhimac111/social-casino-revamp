@@ -8,9 +8,10 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface InteractionsProps {
   post: Post;
+  onCommentClick?: () => void;
 }
 
-export const Interactions = ({ post }: InteractionsProps) => {
+export const Interactions = ({ post, onCommentClick }: InteractionsProps) => {
   const [isLiked, setIsLiked] = useState(post.isLikedByCurrentUser);
   const [isSaved, setIsSaved] = useState(post.isSavedByCurrentUser);
   const [likeCount, setLikeCount] = useState(post.likesCount);
@@ -38,7 +39,7 @@ export const Interactions = ({ post }: InteractionsProps) => {
 
   const handleLikeClick = () => {
     setIsLiked(!isLiked);
-    setLikeCount(isLiked ? likeCount - 1 : likeCount + 1);
+    setLikeCount(isLiked ? (likeCount || 0) - 1 : (likeCount || 0) + 1);
   };
 
   const handleSaveClick = () => {
@@ -97,6 +98,7 @@ export const Interactions = ({ post }: InteractionsProps) => {
 
         <motion.button
           whileTap={{ scale: 0.9 }}
+          onClick={onCommentClick}
           className="flex items-center gap-1.5 group"
         >
           <MessageCircle className="w-6 h-6 text-text-ash group-hover:text-header-blue transition-colors" />
